@@ -13,7 +13,7 @@ namespace Data.Repositorios
     {
         private readonly MyDbContext _myDbContext;
         protected DbSet<T> dbSet;
-
+        //
         public Repository(MyDbContext myDbContext)
         {
             _myDbContext = myDbContext;
