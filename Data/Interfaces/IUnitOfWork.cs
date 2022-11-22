@@ -11,7 +11,7 @@ namespace Data.Interfaces
     {
         //repositorios
         EntidadRepository EntidadRepository { get; }
-        //...
+        
 
 
 
