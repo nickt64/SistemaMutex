@@ -4,6 +4,7 @@ using System;
 
 namespace SistemaMutex.Controllers
 {
+    //mutual / cooperativa
     public class EntidadController : Controller
     {
         private IEntidadServices _entidadServices;
