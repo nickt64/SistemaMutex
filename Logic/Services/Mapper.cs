@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Logic.Services
 {
     public class Mapper
-    {
+    {//mapeo  de 
         public static void NuevaEntidadDtoToEntidad(Entidad entidad, NuevaEntidadDto nuevaEntidad)
         {
 
