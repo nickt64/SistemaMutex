@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data.Interfaces;
+using Shared.Models;
 
 namespace Data.Repositorios
 {
@@ -28,7 +29,7 @@ namespace Data.Repositorios
 
         public void Delete(T entidad)
         {
-            entidad.Borrado = true;
+            entidad.Eliminado = true;
             dbSet.Update(entidad);
         }
 
@@ -37,9 +38,10 @@ namespace Data.Repositorios
             return await dbSet.ToListAsync();
         }
 
+
         public async Task<T> GetById(int entidadId)
         {
-            return await dbSet.SingleOrDefaultAsync(x => x.Id == entidadId);
+            return await dbSet.SingleOrDefaultAsync(T => T.Id == entidadId);
         }
 
         public void Update(T entidad)

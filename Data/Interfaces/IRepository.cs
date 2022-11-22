@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 
 namespace Data.Interfaces
 {
-    public interface IRepository
+
+
+    public interface IRepository<T>
     {
-        public interface IRepository<T> where T : EntidadBase
-        {
-            Task<List<T>> GetAll();
-            Task<T> GetById(int entidadId);
-            Task Add(T entidad);
-            void Delete(T entidad);
-            void Update(T entidad);
-        }
+        Task<List<T>> GetAll();
+       
+        Task Add(T entidad);
+       
+        void Delete(T entidad);
+       
+        void Update(T entidad);
+        
+        Task<T> GetById(int entidadId);
     }
+
 }

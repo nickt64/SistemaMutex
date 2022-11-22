@@ -1,7 +1,12 @@
+using Data;
 using Data.Interfaces;
+using Data.Repositorios;
+using Logic.Interfaces;
+using Logic.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,7 +30,14 @@ namespace SistemaMutex
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<MyDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<EntidadRepository>();
+
+            services.AddScoped<IEntidadServices, EntidadServices>();
 
         }
 

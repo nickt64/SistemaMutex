@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Repositorios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace Data.Interfaces
     public interface IUnitOfWork
     {
         //repositorios
-
+        EntidadRepository EntidadRepository { get; }
 
 
 
