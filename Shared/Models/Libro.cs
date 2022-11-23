@@ -34,7 +34,7 @@ namespace Shared.Models
        public List<Rubrica> Rubricas { get; set; }
 
         [Required]
-        public int EntidadId { get; set; }
+        public long EntidadId { get; set; }
         public  Entidad Entidad { get; set; }
     }
 }

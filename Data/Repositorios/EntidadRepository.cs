@@ -1,4 +1,5 @@
-﻿using Shared.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,10 @@ namespace Data.Repositorios
         public EntidadRepository(MyDbContext myDbContext) : base(myDbContext)
         {
         }
+
+        //public async Task<Entidad> GetByCuit(int entidadCuit)
+        //{
+        //    return await dbSet.SingleOrDefaultAsync(T => T.CUIT.Equals(entidadCuit));
+        //}
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -40,17 +41,20 @@ namespace Shared.Dtos
         public string codigo_postal { get; set; }
 
         [Required]
-        [EmailAddress]
-        [StringLength(200)]
-        public string mail { get; set; }
+        [DataType(DataType.EmailAddress)]
+        [StringLength(300)]
+        public string Mail { get; set; }
 
-        [StringLength(20)]
+        [StringLength(30)]
         public string telefono { get; set; }
         public string CUIT { get; set; }
         public string Tipo_Entidad { get; set; }
         public string Fecha_Inscripcion { get; set; }
         public string Actividad { get; set; }
         public string Estado { get; set; }
+
+        [DefaultValue(false)]
+        public bool DecJurada { get; set; }
 
     }
 }

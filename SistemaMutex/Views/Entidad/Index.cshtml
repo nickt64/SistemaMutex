@@ -1,5 +1,80 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Shared.ViewModels
+@*List<Shared.Dtos.EntidadDto>*@
+@model EntidadIndexVM;
+
 @{
+    ViewBag.Title = "Index";
 }
+
+@if (TempData["mensaje"] != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        @TempData["mensaje"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+<h1>Carga de entidad</h1>
+<h3>Complete: </h3>
+
+
+<div class=" container ">
+    <div class="col-12 justify-content-around">
+        <form asp-controller="entidad" asp-action="addentidad" method="get">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-check form-check-inline">
+
+                <label class="form-check-label" style="margin-inline:5px;" for="busqueda">CUIT de la entidad : </label>
+                <input asp-for="cuit" class="form-check-input" style="margin-inline:5px;" placeholder="30670279126" type="text" id="busqueda">
+
+                <div>
+                    <input asp-for="padron" class="form-check-input m-2" type="radio" id="inlineRadio1" value="21">
+                    <label class="form-check-label m-2" for="inlineRadio1">  Mutual  </label>
+                </div>
+
+                <input asp-for="padron" class="form-check-input m-2" type="radio" id="inlineRadio2" value="11">
+                <label class="form-check-label m-2" for="inlineRadio2">Coopertiva</label>
+
+            </div>
+            <div class="form-group" >
+                <label class="form-check-label" style="margin-inline:auto;" for="representante">Representante de la entidad :  </label>
+                <input asp-for="repEntidad" class="form-check-input" style="margin-inline:5px;" placeholder="nombre apellido" type="text" id="representante">
+            </div>
+             <div class="form-group" >
+                <label class="form-check-label "  for="decjurada">Acepta declaracion jurada:  </label>
+                <input asp-for="decJurada" class="form-check-input" style="margin-inline:5px;" placeholder="nombre apellido" type="checkbox" id="decjurada">
+            </div>
+            <div class="form-check-input ">
+                <button class="btn btn-primary form-check-inline" value="submit">Cargar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@*<table class="table-bordered table table-striped text-center m-3">
+    <thead>
+    <tr>
+    <th>CUIT</th>
+    <th>Matricula</th>
+    <th>Nombre</th>
+    <th>RepEntidad</th>
+    <th>Email</th>
+    <th>Telefono</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var entidad in Model)
+    {
+    <tr>
+    <td>@entidad.CUIT</td>
+    <td>@entidad.Matricula</td>
+    <td>@entidad.Nombre</td>
+    <td>@entidad.RepEntidad</td>
+    <td>@entidad.Email</td>
+    <td>@entidad.telefono</td>
+    </tr>
+    }
+    </tbody>
+    </table>*@

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +11,10 @@ namespace Shared.Models
 {
     public class Entidad : EntidadBase
     {
+
         [Key]
-        public new int  Id
-        {
-            get { return Id; }
-            set { Id = int.Parse(CUIT); }
-        }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public new long Id { get; set; }
 
         [Required][StringLength(11)]
         public string CUIT { get; set; }
@@ -52,8 +51,8 @@ namespace Shared.Models
         public string codigo_postal { get; set; }
         
         [Required]
-        [EmailAddress]
-        [StringLength(200)]
+        [DataType(DataType.EmailAddress)]
+        [StringLength(300)]
         public string Email { get; set; }
 
         [StringLength(20)]
@@ -64,7 +63,12 @@ namespace Shared.Models
 
         [StringLength(15)]
         public string Fecha_Inscripcion { get; set; }
+        
+        [StringLength(100)]
+        public string Actividad { get; set; }
 
+        [StringLength(150)]
+        public string Estado { get; set; }
         
 
     }
