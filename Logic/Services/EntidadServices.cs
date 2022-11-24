@@ -26,15 +26,15 @@ namespace Logic.Services
         {
             var entidad = new Entidad();
 
-            Mapper.NuevaEntidadDtoToEntidad( nuevaEntidad,  repEntidad,  decJurada, entidad);
-
+            Mapper.NuevaEntidadDtoToEntidad(nuevaEntidad, repEntidad, decJurada, entidad);
+            
             await _unitOfWork.EntidadRepository.Add(entidad);
             await _unitOfWork.SaveChangesAsync();
 
         }
 
 
-        public async Task<List<EntidadJSON>> BuscarEntidad(string cuit, int padron)
+        public async Task<EntidadJSON> BuscarEntidad(string cuit, int padron)
         {
             string Baseurl = "https://vpo3.inaes.gob.ar/Entidades/";
 
@@ -46,7 +46,9 @@ namespace Logic.Services
                     "?&Matricula=&Nombre=&Actividad=SELECCIONE+ACTIVIDAD&CodProv=-1&Partido_Depto=SELECCIONE+" +
                     $"PARTIDO%2FDEPTO&Localidad=SELECCIONE+LOCALIDAD&Tipo_Entidad=-1&Padron={padron}&Estados={estado}";
 
-            List<EntidadJSON> entidadInfo = new List<EntidadJSON>();
+            List<EntidadJSON> entidadesInfo = new List<EntidadJSON>();
+
+            var entidadInfo = new EntidadJSON();
 
             using (var client = new HttpClient())
             {
@@ -56,12 +58,16 @@ namespace Logic.Services
 
                 if (Res.IsSuccessStatusCode)
                 {
-                    var entidadResponse =  Res.Content.ReadAsStringAsync().Result;
-                    entidadInfo = JsonConvert.DeserializeObject<List<EntidadJSON>>(entidadResponse);
+                    var entidadResponse = Res.Content.ReadAsStringAsync().Result;
+                    entidadesInfo = JsonConvert.DeserializeObject<List<EntidadJSON>>(entidadResponse);
                 }
-                entidadInfo = entidadInfo.FindAll(x => x.CUIT == cuit);
 
-                if (entidadInfo.Count() < 1)
+
+
+
+                entidadInfo = entidadesInfo.FirstOrDefault(x => x.CUIT == cuit);
+
+                if (entidadInfo == null)
                 {
                     //caso que no encuentre entidad coincidente (mensaje "no existe una entidad vigente con ese cuit")
                     throw new Exception("no se encuentra entidad vigente con ese cuit");
@@ -74,17 +80,17 @@ namespace Logic.Services
         {
             List<EntidadDto> listaEntidades = new List<EntidadDto>();
 
-            List<Entidad> getAllEntidades =  await _unitOfWork.EntidadRepository.GetAll();
+            List<Entidad> getAllEntidades = await _unitOfWork.EntidadRepository.GetAll();
 
             foreach (var entidad in getAllEntidades)
             {
                 listaEntidades.Add(Mapper.EntidadToEntidadDto(entidad));
 
             }
-            
+
             return listaEntidades;
         }
 
-        
+
     }
 }

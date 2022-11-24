@@ -9,16 +9,20 @@ namespace Shared.ViewModels
 {
     public class EntidadInsercionVM
     {
-        public EntidadInsercionVM(EntidadJSON entidadJson, string repEntidad, bool decJurada)
+        public EntidadInsercionVM()
         {
-            this.entidadJson = entidadJson;
-            this.repEntidad = repEntidad;
-            this.decJurada = decJurada;
+
         }
-        public EntidadJSON entidadJson { get; set; }
+        public EntidadInsercionVM(EntidadJSON entidadJson, bool decJurada, string representanteEntidad)
+        {
+            this.EntidadJson = entidadJson;
+            this.DecJurada = decJurada;
+            this.RepresentanteEntidad = representanteEntidad;
+        }
+        public string RepresentanteEntidad { get; set; }
 
-        public string repEntidad { get; set; }
+        public EntidadJSON EntidadJson { get; set; }
 
-        public bool decJurada { get; set; }
+        public bool DecJurada { get; set; }
     }
 }

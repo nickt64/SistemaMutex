@@ -19,11 +19,11 @@ namespace SistemaMutex.Controllers
             _entidadServices = entidadServices;
         }
 
-        public  IActionResult Index()
+        public IActionResult Index()
         {
             try
             {
-                var viewModel = new EntidadIndexVM();
+
                 //List<EntidadDto> listaEntidades = await _entidadServices.GetEntidades();
 
 
@@ -34,9 +34,41 @@ namespace SistemaMutex.Controllers
                 TempData["mensaje"] = e.Message;
                 return RedirectToAction("Index");
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CreateEntidad(EntidadIndexVM entidadIndexVMs)
+        {
+            try
+            {
+                var entidadInfo = await _entidadServices.BuscarEntidad(entidadIndexVMs.cuit, entidadIndexVMs.padron);
+
+                var entidadInsercionVM = new EntidadInsercionVM(entidadInfo, entidadIndexVMs.decJurada, entidadIndexVMs.repEntidad);
 
 
 
+                return View(entidadInsercionVM);
+            }catch (Exception e)
+            {
+               return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(EntidadInsercionVM entidadInsercionVM)
+        {
+            try
+            {
+                await _entidadServices.InsertEntidad(entidadInsercionVM.EntidadJson, entidadInsercionVM.RepresentanteEntidad, entidadInsercionVM.DecJurada);
+               
+                
+                return View("index");
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index");
+            }
+            
         }
 
         [HttpGet]
@@ -47,7 +79,7 @@ namespace SistemaMutex.Controllers
                 if (!ModelState.IsValid)
                 {
                     throw new Exception("error carga de datos");
-                    
+
                 }
                 if (!viewModel.decJurada)
                 {
@@ -55,25 +87,25 @@ namespace SistemaMutex.Controllers
                 }
 
 
-                
+
                 var entidadSearch = await _entidadServices.BuscarEntidad(viewModel.cuit, viewModel.padron);
 
-                var nuevaEntidad = entidadSearch.First();
+                var nuevaEntidad = entidadSearch;
 
                 List<EntidadJSON> entidadJson = new List<EntidadJSON>();
                 entidadJson.Add(nuevaEntidad);
                 ViewBag.EntidadBuscada = entidadJson;
                 ViewBag.repEntidad = viewModel.repEntidad;
-                ViewBag.decJurada = viewModel.decJurada  ? "SI." : "NO" ;
-                    
-
-               
-
-               // await _entidadServices.InsertEntidad(nuevaEntidad, RepEntidad, DecJurada);
+                ViewBag.decJurada = viewModel.decJurada ? "SI." : "NO";
 
 
 
-                
+
+                // await _entidadServices.InsertEntidad(nuevaEntidad, RepEntidad, DecJurada);
+
+
+
+
                 return View();
 
             }
@@ -84,10 +116,10 @@ namespace SistemaMutex.Controllers
             }
         }
 
-        //public IActionResult Create(nuevaEntidad, RepEntidad, DecJurada)
+        //public   IActionResult Create()
         //{
-           
-        //    await _entidadServices.InsertEntidad(nuevaEntidad, RepEntidad, DecJurada);
+
+        //  //  await _entidadServices.InsertEntidad(nuevaEntidad, RepEntidad, DecJurada);
 
         //    return View("Index");
         //}

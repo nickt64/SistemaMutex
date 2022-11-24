@@ -16,7 +16,7 @@ namespace Logic.Interfaces
 
         Task InsertEntidad(EntidadJSON nuevaEntidad, string repEntidad, bool decJurada);
 
-        Task<List<EntidadJSON>> BuscarEntidad(string cuit, int padron);
+        Task<EntidadJSON> BuscarEntidad(string cuit, int padron);
 
         //Task<Entidad> GetById(int entidadId);
         
