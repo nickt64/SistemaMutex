@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shared.Dtos
 {
-    public class EntidadJSON
+    public class EntidadJsonDto
     {
         public string Matricula { get; set; }
         public string Nombre { get; set; }

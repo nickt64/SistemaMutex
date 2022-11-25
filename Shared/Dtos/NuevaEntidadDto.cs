@@ -12,41 +12,41 @@ namespace Shared.Dtos
     {
         [Required]
         [StringLength(20, ErrorMessage = "solo letras minimo 2 caracteres")]
-        public string matricula { get; set; }
+        public string Matricula { get; set; }
 
         [Required][StringLength(255)]
-        public string nombre { get; set; }
+        public string Nombre { get; set; }
 
         [Required]
         [StringLength(80)]
-        public string provincia { get; set; }
+        public string Provincia { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string direccion { get; set; }
+        public string Direccion { get; set; }
 
         [Required]
         [StringLength(60)]
-        public string localidad { get; set; }
+        public string Localidad { get; set; }
 
         [Required]
         [StringLength(60)]
-        public string partido_depto { get; set; }
+        public string Partido_Depto { get; set; }
 
         [Required]
         [StringLength(60)]
         public string RepEntidad { get; set; }
 
         [StringLength(50)]
-        public string codigo_postal { get; set; }
+        public string Codigo_Postal { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
         [StringLength(300)]
-        public string Mail { get; set; }
+        public string EMail { get; set; }
 
         [StringLength(30)]
-        public string telefono { get; set; }
+        public string Telefono { get; set; }
         public string CUIT { get; set; }
         public string Tipo_Entidad { get; set; }
         public string Fecha_Inscripcion { get; set; }

@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Shared.ViewModels
 {
-    public class EntidadInsercionVM
+    public class EntidadEdicionVM
     {
-        public EntidadInsercionVM()
+        public EntidadEdicionVM()
         {
 
         }
-        public EntidadInsercionVM(EntidadJsonDto entidadJson, bool decJurada, string representanteEntidad)
+        public EntidadEdicionVM(EntidadJsonDto entidadJson, bool decJurada, string representanteEntidad)
         {
             this.EntidadJson = entidadJson;
             this.DecJurada = decJurada;
@@ -24,5 +24,7 @@ namespace Shared.ViewModels
         public EntidadJsonDto EntidadJson { get; set; }
 
         public bool DecJurada { get; set; }
+
+        public long Id { get; set; }
     }
 }

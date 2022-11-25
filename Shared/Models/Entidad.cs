@@ -39,7 +39,7 @@ namespace Shared.Models
         public string Localidad { get; set; }
 
         [Required][StringLength(60)]
-        public string Partido_depto { get; set; }
+        public string Partido_Depto { get; set; }
 
         [Required][StringLength(60)]
         public string RepEntidad { get; set; }
@@ -48,15 +48,15 @@ namespace Shared.Models
 
 
         [StringLength(50)]
-        public string codigo_postal { get; set; }
+        public string Codigo_Postal { get; set; }
         
         [Required]
         [DataType(DataType.EmailAddress)]
         [StringLength(300)]
-        public string Email { get; set; }
+        public string EMail { get; set; }
 
         [StringLength(20)]
-        public string telefono { get; set; }
+        public string Telefono { get; set; }
 
         [StringLength(20)]
         public string Tipo_Entidad { get; set; }
