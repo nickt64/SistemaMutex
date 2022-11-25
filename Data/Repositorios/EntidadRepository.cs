@@ -14,9 +14,14 @@ namespace Data.Repositorios
         {
         }
 
-        //public async Task<Entidad> GetByCuit(int entidadCuit)
-        //{
-        //    return await dbSet.SingleOrDefaultAsync(T => T.CUIT.Equals(entidadCuit));
-        //}
+        public async Task<Entidad> GetById(long entidadId)
+        {
+            return await dbSet.SingleOrDefaultAsync(T => T.Id == entidadId);
+        }
+
+        public async Task<List<Entidad>> ObtenerPorEstado(bool estado)
+        {
+            return await dbSet.Where(x => x.Eliminado == estado).ToListAsync();
+        }
     }
 }

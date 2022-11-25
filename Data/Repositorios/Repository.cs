@@ -10,7 +10,7 @@ using Shared.Models;
 namespace Data.Repositorios
 {
 
-    public abstract class Repository<T> : IRepository<T> where T : EntidadBase
+    public  class Repository<T> : IRepository<T> where T : EntidadBase
     {
         private readonly MyDbContext _myDbContext;
         protected DbSet<T> dbSet;
@@ -41,9 +41,11 @@ namespace Data.Repositorios
 
         public async Task<T> GetById(int entidadId)
         {
+            //puede agregar parametro 
             return await dbSet.SingleOrDefaultAsync(T => T.Id == entidadId);
         }
 
+       
         public void Update(T entidad)
         {
             dbSet.Attach(entidad);
