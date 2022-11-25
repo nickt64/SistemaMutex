@@ -1,0 +1,94 @@
+﻿@using Shared.Dtos
+
+
+@model EntidadDto ;
+@{
+    ViewBag.Title = "Edicion Entidad";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>datos de carga</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="UpdateEntidad" method="post" class="container">
+
+                <input type="hidden" asp-for="@Model.Id" />
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for=CUIT class="control-label" ></label>
+                    <input asp-for="CUIT" class="form-control"   />
+                </div>
+                <div class="form-group">
+                    <label asp-for=Direccion class="control-label" ></label>
+                    <input asp-for="Direccion" class="form-control"   />
+                </div>
+                <div class="form-group">
+                    <label asp-for=Matricula class="control-label" ></label>
+                    <input asp-for="Matricula" class="form-control"   />
+                </div>
+                <div class="form-group">
+                    <label asp-for=Nombre class="control-label" ></label>
+                    <input asp-for="Nombre" class="form-control"   />
+                </div>
+                <div class="form-group">
+                    <label asp-for=Provincia class="control-label" ></label>
+                    <input asp-for="Provincia" class="form-control"   />
+                </div>
+                <div class="form-group">
+                    <label asp-for=Localidad class="control-label" ></label>
+                    <input asp-for="Localidad" class="form-control"   />
+                </div>
+                <div class="form-group">
+                    <label asp-for=Partido_Depto class="control-label" ></label>
+                    <input asp-for="Partido_Depto" class="form-control"   />
+                </div>
+                <div class="form-group">
+                    <label asp-for=Codigo_Postal class="control-label" ></label>
+                    <input asp-for="Codigo_Postal" class="form-control"   />
+                </div><div class="form-group">
+                    <label asp-for=EMail class="control-label" ></label>
+                    <input asp-for="EMail" class="form-control"   />
+                </div>
+                <div class="form-group">
+                    <label asp-for=Telefono class="control-label" ></label>
+                    <input asp-for="Telefono" class="form-control"   />
+                </div>
+                <div class="form-group">
+                    <label asp-for=Tipo_Entidad class="control-label" ></label>
+                    <input asp-for="Tipo_Entidad" class="form-control"   />
+                </div>
+                <div class="form-group">
+                    <label asp-for=Fecha_Inscripcion class="control-label" ></label>
+                    <input asp-for="Fecha_Inscripcion" class="form-control"   />
+                </div>
+                <div class="form-group">
+                    <label asp-for=Actividad class="control-label" ></label>
+                    <input asp-for="Actividad" class="form-control"   />
+                </div>
+                <div class="form-group">
+                    <label asp-for=Estado class="control-label" ></label>
+                    <input asp-for="Estado" class="form-control"   />
+                </div>
+                <div class="form-group">
+                    <label asp-for=DecJurada class="control-label" ></label>
+                    <input asp-for="DecJurada" type="text" class="form-control"   />
+                </div>
+                <div class="form-group">
+                    <label asp-for=RepEntidad class="control-label" ></label>
+                    <input asp-for="RepEntidad" class="form-control"   />
+                </div>
+                <div class="form-group">
+                    <label for="cargar" class=control-label> Confirme </label>
+                    <input type="submit" value="Editar Entidad" id="cargar" class="btn btn-primary flex-column" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

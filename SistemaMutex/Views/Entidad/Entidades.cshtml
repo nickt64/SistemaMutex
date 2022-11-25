@@ -1,0 +1,72 @@
+﻿@using Shared.Dtos
+
+
+@model List<EntidadDto> 
+@{
+    ViewData["Title"] = "Listado de Entidades Cargadas";
+}
+
+@if (TempData["mensaje"] != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        @TempData["mensaje"]
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+
+<div class="container">
+    <div class="row ">
+
+        <form asp-action="Entidades" method="get" class="form-inline ">
+            <div class="form-inline">
+                <div class="form-inline">
+                    <label for="busqueda" class="control-label mr-3">CUIT:</label>
+
+                    <input name="valor" type="text"   title="Solo numeros" pattern="[0-9]{1,11}" id="busqueda" class="form-control col-6"  />
+                    <input type="submit" value="Buscar" class="btn btn-primary m-3" />
+                </div>
+        </form>
+        <a class="btn btn-primary " asp-area="" asp-controller="entidad" asp-action="index">Nuevo ingreso</a>
+    </div>
+</div>
+
+<div >
+    <table class="table-bordered table-responsive table-striped text-center m-3">
+        <thead>
+            <tr>
+                <th>CUIT</th>
+                <th>Matricula</th>
+                <th>Nombre</th>
+                <th>Representante</th>
+                <th>Email</th>
+                <th>Telefono</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var entidad in  Model )
+            {
+                <tr>
+                    <td>@entidad.CUIT</td>
+                    <td>@entidad.Matricula</td>
+                    <td>@entidad.Nombre</td>
+                    <td>@entidad.RepEntidad</td>
+                    <td>@entidad.EMail</td>
+                    <td>@entidad.Telefono</td>
+                    
+
+                    <td >
+                        
+                        <a   asp-controller="Entidad" asp-action="updateEntidad" asp-route-id="@entidad.Id">Editar </a>|
+                        <a   asp-controller="Entidad" asp-action="DeleteEntidad" asp-route-id="@entidad.Id">Eliminar</a>
+                        
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

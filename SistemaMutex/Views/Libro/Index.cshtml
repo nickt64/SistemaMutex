@@ -1,0 +1,20 @@
+﻿@using Shared.Dtos
+
+
+@model List<LibroDto> 
+@{
+    ViewData["Title"] = "Listado de libros";
+}
+
+@if (TempData["mensaje"] != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        @TempData["mensaje"]
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+

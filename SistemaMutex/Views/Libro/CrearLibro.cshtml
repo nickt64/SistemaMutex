@@ -1,0 +1,59 @@
+﻿@using Shared.Dtos
+
+
+@model NuevoLibroDto;
+
+@{
+    ViewBag.Title = "Creacion Entidad";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Carga de Datos</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="Create" method="post" class="container">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    
+                    <input asp-for="EntidadId" class="form-control" type="hidden"  />
+                </div>
+                <div class="form-group">
+                    <label asp-for=Name class="control-label" ></label>
+                    <input asp-for="Name" class="form-control"  />
+                </div>
+                <div class="form-group">
+                    <label asp-for=TipoLibro class="control-label" ></label>
+                    <input asp-for="TipoLibro" class="form-control"  />
+                </div>
+              
+                <div class="form-group">
+                    <label asp-for="MedioAlmacenamiento" class="control-label" ></label>
+                    <input asp-for="MedioAlmacenamiento" type="text" class="form-control"  />
+                </div>
+                <div class="form-group">
+                    <label asp-for=NumTomo class="control-label" ></label>
+                    <input asp-for="NumTomo" class="form-control"  />
+                </div>
+                <div class="form-group">
+                    <label asp-for=CantFojas class="control-label" ></label>
+                    <input asp-for="CantFojas" class="form-control"  />
+                </div>
+                 <div class="form-inline">
+                        <label asp-for="Autorizado" class="control-label " for="decjurada">Autorizado : </label>
+                        <input asp-for="Autorizado" class="form-control m-3"   type="checkbox" id="decjurada"/>
+                    </div>
+
+                <div class="form-group">
+                    <label for="cargar" class=control-label> Confirme </label>
+                    <input type="submit" value="Agregar libro" id="cargar" class="btn btn-primary flex-column" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
