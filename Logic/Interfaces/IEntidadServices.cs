@@ -14,18 +14,16 @@ namespace Logic.Interfaces
 
         //Task<NuevaEntidadDto> Detalle(int entidadId);
 
-        Task InsertEntidad(EntidadJSON nuevaEntidad, string repEntidad, bool decJurada);
+        Task InsertEntidad(EntidadJsonDto nuevaEntidad, string repEntidad, bool decJurada);
 
-        Task<EntidadJSON> BuscarEntidad(string cuit, int padron);
+        Task<EntidadJsonDto> BuscarEntidad(string cuit, int padron);
 
-        //Task<Entidad> GetById(int entidadId);
+        Task<EntidadDto> GetById(long entidadId);
         
-        
+        Task ActualizarEntidad(EntidadDto entidadDto);
 
-        //Task UpdateUsuario(NuevaEntidadDto   usuario);
+        Task EliminarEntidad(long id);
 
-        //Task Delete(int id);
-
-        //Task ReActivar(int id);
+        //Task ReActivarEntidad(int id);
     }
 }
