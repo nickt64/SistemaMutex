@@ -22,19 +22,21 @@ namespace Logic.Services
         }
 
 
-        public async Task InsertEntidad(EntidadJSON nuevaEntidad, string repEntidad, bool decJurada)
+        
+        public async Task InsertEntidad(EntidadJsonDto entidadJsonDto, string repEntidad, bool decJurada)
         {
             var entidad = new Entidad();
 
-            Mapper.NuevaEntidadDtoToEntidad(nuevaEntidad, repEntidad, decJurada, entidad);
-            
+            Mapper.NuevaEntidadDtoToEntidad(entidadJsonDto, repEntidad, decJurada, entidad);
+
             await _unitOfWork.EntidadRepository.Add(entidad);
+
             await _unitOfWork.SaveChangesAsync();
 
         }
 
 
-        public async Task<EntidadJSON> BuscarEntidad(string cuit, int padron)
+        public async Task<EntidadJsonDto> BuscarEntidad(string cuit, int padron)
         {
             string Baseurl = "https://vpo3.inaes.gob.ar/Entidades/";
 
@@ -46,9 +48,9 @@ namespace Logic.Services
                     "?&Matricula=&Nombre=&Actividad=SELECCIONE+ACTIVIDAD&CodProv=-1&Partido_Depto=SELECCIONE+" +
                     $"PARTIDO%2FDEPTO&Localidad=SELECCIONE+LOCALIDAD&Tipo_Entidad=-1&Padron={padron}&Estados={estado}";
 
-            List<EntidadJSON> entidadesInfo = new List<EntidadJSON>();
+            List<EntidadJsonDto> entidadesInfo = new List<EntidadJsonDto>();
 
-            var entidadInfo = new EntidadJSON();
+            var entidadInfo = new EntidadJsonDto();
 
             using (var client = new HttpClient())
             {
@@ -59,7 +61,7 @@ namespace Logic.Services
                 if (Res.IsSuccessStatusCode)
                 {
                     var entidadResponse = Res.Content.ReadAsStringAsync().Result;
-                    entidadesInfo = JsonConvert.DeserializeObject<List<EntidadJSON>>(entidadResponse);
+                    entidadesInfo = JsonConvert.DeserializeObject<List<EntidadJsonDto>>(entidadResponse);
                 }
 
 
@@ -76,11 +78,11 @@ namespace Logic.Services
             return entidadInfo;
         }
 
-        async Task<List<EntidadDto>> IEntidadServices.GetEntidades()
+        public async Task<List<EntidadDto>> GetEntidades()
         {
             List<EntidadDto> listaEntidades = new List<EntidadDto>();
 
-            List<Entidad> getAllEntidades = await _unitOfWork.EntidadRepository.GetAll();
+            List<Entidad> getAllEntidades = await _unitOfWork.EntidadRepository.ObtenerPorEstado(false);
 
             foreach (var entidad in getAllEntidades)
             {
@@ -91,6 +93,53 @@ namespace Logic.Services
             return listaEntidades;
         }
 
+        public async Task<EntidadDto> GetById(long entidadId)
+        {
+            try
+            {
+                Entidad entidad = await _unitOfWork.EntidadRepository.GetById(entidadId);
 
+                
+                var entidadDto = Mapper.EntidadToEntidadDto(entidad); 
+
+                return entidadDto;
+            }
+            catch
+            {
+                throw new NotImplementedException("no se encuentra entidad seleccionada");
+
+            }
+
+        }
+
+
+        public async Task ActualizarEntidad(EntidadDto entidadDto)
+        {
+            var entidad = await _unitOfWork.EntidadRepository.GetById(entidadDto.Id);
+
+            if (entidad == null)
+            {
+                throw new Exception("Usuario no existe con el ID: " + entidad.Id);
+            }
+
+            Mapper.EntidadDtoDtoToEntidad(entidadDto, entidad);
+
+            _unitOfWork.EntidadRepository.Update(entidad);
+            await _unitOfWork.SaveChangesAsync();
+
+        }
+        
+        public async Task EliminarEntidad(long id)
+        {
+            var entidad = await _unitOfWork.EntidadRepository.GetById(id);
+
+            if (entidad == null || entidad.Eliminado == true)
+            {
+                throw new Exception("Entidad dada de baja con el CUIT: " + id);
+            }
+
+            _unitOfWork.EntidadRepository.Delete(entidad);
+            await _unitOfWork.SaveChangesAsync();
+        }
     }
 }
