@@ -1,0 +1,91 @@
+﻿@using Shared.ViewModels
+
+
+@model EntidadInsercionVM ;
+@{
+    ViewBag.Title = "Creacion Entidad";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Carga de Datos</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="Create" method="post" class="container">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for=EntidadJson.CUIT class="control-label" ></label>
+                    <input asp-for="EntidadJson.CUIT" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label asp-for=EntidadJson.Direccion class="control-label" ></label>
+                    <input asp-for="EntidadJson.Direccion" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label asp-for=EntidadJson.Matricula class="control-label" ></label>
+                    <input asp-for="EntidadJson.Matricula" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label asp-for=EntidadJson.Nombre class="control-label" ></label>
+                    <input asp-for="EntidadJson.Nombre" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label asp-for=EntidadJson.Provincia class="control-label" ></label>
+                    <input asp-for="EntidadJson.Provincia" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label asp-for=EntidadJson.Localidad class="control-label" ></label>
+                    <input asp-for="EntidadJson.Localidad" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label asp-for=EntidadJson.Partido_Depto class="control-label" ></label>
+                    <input asp-for="EntidadJson.Partido_Depto" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label asp-for=EntidadJson.Codigo_Postal class="control-label" ></label>
+                    <input asp-for="EntidadJson.Codigo_Postal" class="form-control" readonly />
+                </div><div class="form-group">
+                    <label asp-for=EntidadJson.EMail class="control-label" ></label>
+                    <input asp-for="EntidadJson.EMail" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label asp-for=EntidadJson.Telefono class="control-label" ></label>
+                    <input asp-for="EntidadJson.Telefono" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label asp-for=EntidadJson.Tipo_Entidad class="control-label" ></label>
+                    <input asp-for="EntidadJson.Tipo_Entidad" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label asp-for=EntidadJson.Fecha_Inscripcion class="control-label" ></label>
+                    <input asp-for="EntidadJson.Fecha_Inscripcion" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label asp-for=EntidadJson.Actividad class="control-label" ></label>
+                    <input asp-for="EntidadJson.Actividad" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label asp-for=EntidadJson.Estado class="control-label" ></label>
+                    <input asp-for="EntidadJson.Estado" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label asp-for=DecJurada class="control-label" ></label>
+                    <input asp-for="DecJurada" type="text" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label asp-for=RepresentanteEntidad class="control-label" ></label>
+                    <input asp-for="RepresentanteEntidad" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="cargar" class=control-label> Confirme </label>
+                    <input type="submit" value="Agregar Entidad" id="cargar" class="btn btn-primary flex-column" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

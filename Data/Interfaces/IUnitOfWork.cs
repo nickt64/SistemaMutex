@@ -11,7 +11,10 @@ namespace Data.Interfaces
     {
         //repositorios
         EntidadRepository EntidadRepository { get; }
-        
+
+        LibroRepository LibroRepository { get; }
+
+        RubricaRepository RubricaRepository { get; }
 
 
 

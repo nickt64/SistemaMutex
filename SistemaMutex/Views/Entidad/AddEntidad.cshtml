@@ -1,0 +1,61 @@
+﻿@using Shared.ViewModels
+
+
+@model EntidadInsercionVM ;
+@{
+    ViewBag.Title = "Carga Entidad";
+}
+
+<h1>Entidad</h1>
+
+<<form asp-action="Crear" method="post"  >
+<div class="container-fluid">
+    <h3>Entidad a Cargar</h3>
+    <table class="table-bordered table table-striped text-center m-3">
+        <thead>
+            <tr>
+                <th>CUIT</th>
+                <th>Matricula</th>
+                <th>Nombre</th>
+                <th>Provincia</th>
+                <th>Email</th>
+                <th>Telefono</th>
+                <th>Direccion</th>
+                <th>Localidad</th>
+                <th>Partido_Depto</th>
+                <th>Codigo_Postal</th>
+                <th>Tipo_Entidad</th>
+                <th>Fecha_Inscripcion</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var entidad in ViewBag.EntidadBuscada)
+            {
+                <tr>
+                    <td>@entidad.CUIT</td>
+                    <td>@entidad.Matricula</td>
+                    <td>@entidad.Nombre</td>
+                    <td>@entidad.Provincia</td>
+                    <td>@entidad.EMail</td>
+                    <td>@entidad.Telefono</td>
+                    <td>@entidad.Direccion</td>
+                    <td>@entidad.Localidad</td>
+                    <td>@entidad.Partido_Depto</td>
+                    <td>@entidad.Codigo_Postal</td>
+                    <td>@entidad.Tipo_Entidad</td>
+                    <td>@entidad.Fecha_Inscripcion</td>
+                    <td>@entidad.Estado</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    Acepta declaración jurada :  @ViewBag.decJurada  <br />
+    Representante Entidad : @ViewBag.repEntidad
+</div>
+<div>
+    <a class="btn btn-primary form-group" asp-controller="entidad" asp-action="Cargar">cargar</a>
+</div>
+</form>

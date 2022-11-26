@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaMutex", "SistemaMutex\SistemaMutex.csproj", "{687F6EB2-F4ED-4657-A39C-0C42A26E09CD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{045BAEBC-B50D-4B57-B535-9CE4D80C9C8C} = {045BAEBC-B50D-4B57-B535-9CE4D80C9C8C}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Data", "1 - Data", "{A11934B4-B421-4057-9C0C-6FE01B500340}"
 EndProject

@@ -1,4 +1,5 @@
 ﻿using Shared.Dtos;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +10,20 @@ namespace Logic.Interfaces
 {
     public interface IEntidadServices
     {
-        //Task<IEnumerable<EntidadDto>> GetUsuarios(bool? estado);
+        Task<List<EntidadDto>> GetEntidades();
 
         //Task<NuevaEntidadDto> Detalle(int entidadId);
 
-        Task InsertEntidad(NuevaEntidadDto entidad);
+        Task InsertEntidad(EntidadJsonDto nuevaEntidad, string repEntidad, bool decJurada);
 
-        Task<List<NuevaEntidadDto>> BuscarEntidad(string cuit, int padron);
+        Task<EntidadJsonDto> BuscarEntidad(string cuit, int padron);
 
+        Task<EntidadDto> GetById(long entidadId);
+        
+        Task ActualizarEntidad(EntidadDto entidadDto);
 
-        //Task UpdateUsuario(NuevaEntidadDto   usuario);
+        Task EliminarEntidad(long id);
 
-        //Task Delete(int id);
-
-        //Task ReActivar(int id);
+        //Task ReActivarEntidad(int id);
     }
 }

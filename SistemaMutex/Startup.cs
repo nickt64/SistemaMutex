@@ -36,8 +36,12 @@ namespace SistemaMutex
             });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<EntidadRepository>();
+            services.AddScoped<LibroRepository>();
+            services.AddScoped<RubricaRepository>();
 
             services.AddScoped<IEntidadServices, EntidadServices>();
+            services.AddScoped<ILibroServices, LibroServices>();
+            services.AddScoped<IRubricaServices, RubricaServices>();
 
         }
 
