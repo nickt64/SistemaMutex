@@ -42,7 +42,7 @@ namespace Data.Repositorios
         public async Task<T> GetById(int entidadId)
         {
             //puede agregar parametro 
-            return await dbSet.SingleOrDefaultAsync(T => T.Id == entidadId);
+            return await dbSet.SingleOrDefaultAsync(T => T.Id == entidadId );
         }
 
        

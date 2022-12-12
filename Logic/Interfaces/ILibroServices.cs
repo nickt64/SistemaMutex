@@ -9,9 +9,17 @@ namespace Logic.Interfaces
 {
     public interface ILibroServices
     {
-        Task AgregarLibro(NuevoLibroDto nuevoLibro);
+        Task AgregarLibro(NuevoLibroDto nuevoLibroDto);
 
         public Task<List<LibroDto>> ObtenerLibros(long id);
+
+        public Task<LibroDto> GetById(int libroId);
+
+        public Task ActualizarLibro(LibroDto libroDto);
+
+        public Task BorrarLibro(int Id);
+
+
 
     }
 }

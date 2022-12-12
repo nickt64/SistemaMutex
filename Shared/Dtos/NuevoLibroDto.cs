@@ -10,23 +10,22 @@ namespace Shared.Dtos
 {
     public class NuevoLibroDto
     {     
-        [Required, StringLength(70)]
+        [Required, StringLength(70)][Display(Name ="Nombre")]
         public string Name { get; set; }
 
-        [Required, StringLength(20)]
+        [Required, StringLength(20)][Display(Name ="Tipo de Libro")]
         public string TipoLibro { get; set; }
 
-        [Required, StringLength(20)]
+        [Required, StringLength(20)][Display(Name ="Medio de Almacenamiento")]
         public string MedioAlmacenamiento { get; set; }
 
-        [Required]
+        [Required][Display(Name ="Nro de Tomo")]
         public int NumTomo { get; set; }
 
-        [Required]
+        [Required][Display(Name ="Cantidad de Fojas")]
         public int CantFojas { get; set; }
 
         public List<Rubrica> Rubricas { get; set; }
-
 
         [Required]
         public bool Autorizado { get; set; }

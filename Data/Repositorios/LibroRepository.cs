@@ -18,7 +18,7 @@ namespace Data.Repositorios
         public async Task<List<Libro>> GetAllForEntidad(long id)
         {
 
-            return await dbSet.Include(x => x.Entidad).Where(x => x.EntidadId == id).ToListAsync();
+            return await dbSet.Include(x => x.Entidad).Where(x => x.EntidadId == id && x.Eliminado == false).ToListAsync();
                
         }
 

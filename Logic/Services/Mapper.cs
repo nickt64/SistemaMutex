@@ -122,14 +122,31 @@ namespace Logic.Services
             libro.CantFojas = nuevolibro.CantFojas;
             libro.Autorizado = nuevolibro.Autorizado;
             libro.EntidadId = nuevolibro.EntidadId;
-            libro.Entidad = nuevolibro.Entidad;
-            libro.Rubricas = nuevolibro.Rubricas;
+           // libro.Entidad = nuevolibro.Entidad;
+           // libro.Rubricas = nuevolibro.Rubricas;
 
         }
 
         public static LibroDto LibroToLibroDto(Libro libro)
         {
             LibroDto libroDto = new LibroDto();
+
+            libroDto.Id = libro.Id;
+            libroDto.Name = libro.Name;
+            libroDto.TipoLibro = libro.TipoLibro;
+            libroDto.MedioAlmacenamiento = libro.MedioAlmacenamiento;
+            libroDto.NumTomo = libro.NumTomo;
+            libroDto.CantFojas = libro.CantFojas;
+            libroDto.Autorizado = libro.Autorizado;
+            libroDto.Entidad = libro.Entidad;
+            libroDto.EntidadId = libro.EntidadId;
+           // libro.Entidad.Nombre = libroDto.Entidad.Nombre;
+
+            return libroDto;
+        }
+
+        public static void LibroDtoToLibro(LibroDto libroDto, Libro libro)
+        {
 
             libro.Id = libroDto.Id;
             libro.Name = libroDto.Name;
@@ -138,10 +155,11 @@ namespace Logic.Services
             libro.NumTomo = libroDto.NumTomo;
             libro.CantFojas = libroDto.CantFojas;
             libro.Autorizado = libroDto.Autorizado;
-            libro.Entidad = libroDto.Entidad;
             libro.EntidadId = libroDto.EntidadId;
+            libro.Eliminado = libroDto.Eliminado;
 
-            return libroDto;
         }
+
+
     }
 }
