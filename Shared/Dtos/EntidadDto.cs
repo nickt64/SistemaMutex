@@ -14,7 +14,7 @@ namespace Shared.Dtos
         public long Id { get; set; }
 
         [Required]
-        [StringLength(11)]
+        [StringLength(11,MinimumLength =11,ErrorMessage ="el numero de cuit debe contener 11 digitos")]
         public string CUIT { get; set; }
 
         [Required]
@@ -71,6 +71,8 @@ namespace Shared.Dtos
 
         [StringLength(150)]
         public string Estado { get; set; }
+
+        public string Eliminado { get; set; }
 
     }
 }

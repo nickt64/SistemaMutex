@@ -25,7 +25,7 @@ namespace SistemaMutex.Controllers
         {
             try
             {
-                
+
                 return View();
             }
             catch (Exception e)
@@ -40,10 +40,11 @@ namespace SistemaMutex.Controllers
         public async Task<IActionResult> Entidades(string? valor)
         {
             try
+            
             {
 
                 List<EntidadDto> listaEntidades = await _entidadServices.GetEntidades();
-              
+
 
                 if (!string.IsNullOrEmpty(valor))
                 {
@@ -101,7 +102,7 @@ namespace SistemaMutex.Controllers
             }
             catch (Exception e)
             {
-                TempData["mensaje"] = e.Message ;
+                TempData["mensaje"] = e.Message;
                 return RedirectToAction("Index");
             }
 
@@ -112,7 +113,7 @@ namespace SistemaMutex.Controllers
         {
             try
             {
-                if(id == null)
+                if (id == null)
                 {
                     TempData["mensaje"] = "Identificador incorrecto o nulo";
                     return RedirectToAction("Entidades");
@@ -121,38 +122,40 @@ namespace SistemaMutex.Controllers
 
                 EntidadDto entidadDto = await _entidadServices.GetById(Id);
 
-                
 
-                return View( entidadDto);
+
+                return View(entidadDto);
             }
             catch (Exception e)
             {
-                TempData["mensaje"] = e.Message ;
+                TempData["mensaje"] = e.Message;
                 return RedirectToAction("Entidades");
             }
         }
 
 
-        [HttpPost][ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateEntidad(EntidadDto entidadDto)
         {
             try
             {
-                if (!ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
-                    TempData["mensaje"] = "Identificador incorrecto o nulo";
+                    await _entidadServices.ActualizarEntidad(entidadDto);
                     return RedirectToAction("Entidades");
                 }
-                await _entidadServices.ActualizarEntidad(entidadDto);
+
+                TempData["mensaje"] = "Identificador incorrecto o nulo";
+                return View();
 
 
 
-                return RedirectToAction("Entidades");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 TempData["mensaje"] = e.Message;
-                return RedirectToAction("Listado");
+                return RedirectToAction("entidades");
             }
         }
 
@@ -188,7 +191,7 @@ namespace SistemaMutex.Controllers
 
 
 
-            [HttpGet]
+        [HttpGet]
         public async Task<IActionResult> AddEntidad(EntidadIndexVM viewModel)
         {
             try

@@ -12,7 +12,7 @@ namespace Shared.ViewModels
     {
        
 
-        [Required][StringLength(11, ErrorMessage = "a")][MinLength(11)]
+        [Required][StringLength(11, ErrorMessage = "dato CUIT requerido, 11 digitos")][MinLength(11)]
         public string cuit { get; set; }
         [Required]
         public int padron { get; set; }

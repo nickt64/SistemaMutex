@@ -93,12 +93,17 @@ namespace Logic.Services
             return listaEntidades;
         }
 
+
         public async Task<EntidadDto> GetById(long entidadId)
         {
             try
             {
                 Entidad entidad = await _unitOfWork.EntidadRepository.GetById(entidadId);
 
+                if(entidadId != entidad.Id)
+                {
+                    throw new Exception("el numero de cuit no puede ser modificado");
+                }
                 
                 var entidadDto = Mapper.EntidadToEntidadDto(entidad); 
 
